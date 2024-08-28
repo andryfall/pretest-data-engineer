@@ -1,0 +1,32 @@
+id: data_clean
+namespace: testing
+
+inputs:
+  - id: file
+    type: FILE
+
+tasks:
+  - id: clean_data
+    type: io.kestra.plugin.scripts.python.Script
+    inputFiles:
+      input_csv: "{{ inputs.file }}"
+    beforeCommands:
+      - pip install pandas
+    script: |
+      import pandas as pd
+      import re
+      
+      # Read the CSV file
+      df = pd.read_csv('input_csv')
+
+      # Data Cleansing: Remove rows with missing critical data
+      df_cleaned = df.dropna(subset=['reviewTitle', 'reviewContent', 'boughtDate'])
+
+      # Remove duplicate rows based on all columns
+      df_cleaned = df_cleaned.drop_duplicates()
+
+      # Export the cleaned DataFrame back to CSV
+      df_cleaned.to_csv('cleaned_review_lazada.csv', index=False)
+
+    outputFiles:
+      - "*.csv"

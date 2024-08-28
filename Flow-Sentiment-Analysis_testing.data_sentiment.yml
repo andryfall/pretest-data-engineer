@@ -1,0 +1,34 @@
+id: data_sentiment
+namespace: testing
+
+inputs:
+  - id: file
+    type: FILE
+
+tasks:
+  - id: analysis_data
+    type: io.kestra.plugin.scripts.python.Script
+    inputFiles:
+      input_csv: "{{ inputs.file }}"
+    beforeCommands:
+      - pip install pandas
+    script: |
+      import pandas as pd
+      import re
+      
+      df_cleaned = pd.read_csv('input_csv')
+
+      def sentiment(row):
+        if row['rating'] >= 4:
+          return 'Positive'
+        elif row['rating'] == 3:
+          return 'Neutral'
+        else:
+          return 'Negative'
+
+      df_cleaned['sentiment'] = df_cleaned.apply(sentiment, axis=1)
+      
+      df_cleaned.to_csv('sentiment_review_lazada.csv', index=False)
+
+    outputFiles:
+      - "*.csv"
