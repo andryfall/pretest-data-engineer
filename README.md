@@ -7,6 +7,8 @@
 4. Mengapa Data menjadi sesuatu yang sangat penting sekarang, dan apa dampak dari kebocoran data
 5. Apa yg anda ketahui mengenai model generative AI ? da apa saja penerapannya
 
+Jawaban:
+
 1. Data Engineer adalah profesi yang bertanggung jawab dalam membangung and mengelola infrastruktur data agar dapat mudah untuk di proses dan di analisis.
 2. Saya punya pengalaman dalam membangun database untuk menyimpan data website yang saya buat. Serta pengalaman dalam menganalsis data dengan machine learning.
 3. AI adalah teknologi yang memberikan komputer kemampuan untuk mensimulasi kecerdasan manusia, seperti kemampuan berpikir dan menganalisis. 
